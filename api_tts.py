@@ -83,3 +83,11 @@ def download_audio(audio_url):
         except:
             print("FAILED")
     return is_downloaded
+
+def get_audio(text):
+    _,_,audio_url = speech_synthesis(text)
+    hash_code = get_hash_audio(audio_url)
+    done_downloaded = False
+    if not is_audio_exist(hash_code):
+        done_downloaded = download_audio(audio_url)
+    return str(hash_code), done_downloaded
